@@ -35,3 +35,44 @@ width: 70%;
 align-items: center;
 justify-content: center;
 `;
+
+export const TripTitle = styled.Text`
+color: #9d8189;
+font-size: 24px;
+font-weight: bold;
+margin-bottom: 20px;
+border-bottom-color: #9d8189 ;
+`;
+
+export const TripContainer = styled.View`
+flex: 1;
+align-self: stretch;
+justify-content: center;
+align-items: center;
+background-color: white;
+padding-right: 60px;
+padding-left: 60px;
+`;
+export const TripTextInput = styled.TextInput`
+align-self: stretch;
+text-align: left;
+height: 40px;
+margin-bottom: 30px;
+color: #9d8189;
+border-bottom-color: #9d8189;
+border-bottom-width: 1px;
+`;
+
+export const TripButtonText = styled.Text`
+color: #fcfdff;
+font-weight: bold;
+font-size: 18px;
+`;
+
+export const TripButton = styled.TouchableOpacity`
+align-self: stretch;
+align-items: center;
+padding: 20px;
+background-color: #f4acb7;
+margin-top: 30px;
+`;
