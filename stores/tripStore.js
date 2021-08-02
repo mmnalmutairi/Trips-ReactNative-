@@ -1,6 +1,5 @@
 import { makeAutoObservable } from "mobx";
 import instance from "./instance";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 class TripStore {
   trips = [];
@@ -25,9 +24,29 @@ class TripStore {
   createTrip = async (newTrip) => {
     try {
       const res = await instance.post("/trips", newTrip);
-      await AsyncStorage.setItem("trip", res.data);
+      this.trips.push(res.data);
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  // ****************** DELETE TRIP METHOD ******************
+  deleteTrip = async (tripId) => {
+    await instance.delete(`/trips/${tripId}`);
+    const updatedTrip = this.trips.filter((trip) => trip.id !== +tripId);
+    this.trips = updatedTrip;
+  };
+
+  // ****************** UPDATE TRIP METHOD ******************
+  updateTrip = async (updatedTrip) => {
+    try {
+      const formData = new FormData();
+      for (const key in updatedTrip) formData.append(key, updatedTrip[key]);
+      const response = await instance.put(`/trips/${updatedTrip.id}`, formData);
+      const trip = this.trips.find((trip) => trip.id === response.data.id);
+      for (const key in trip) trip[key] = response.data[key];
+    } catch (error) {
+      console.log(error);
     }
   };
 }

@@ -26,35 +26,39 @@ const Signin = ({ navigation }) => {
           justifyContent: "flex-end",
         }}
       >
-        <View style={{ ...StyleSheet.absoluteFill }}>
-          <Image
-            source={{
-              uri: "https://www.teahub.io/photos/full/1-11199_cute-backgrounds-for-iphone-rose-gold-iphone-backgrounds.jpg",
-            }}
-            style={{ flex: 1, height: null, width: null }}
-          />
-          <View style={{ height: height / 3, backgroundColor: "white" }}>
-            <AuthText>Sign in</AuthText>
-            <AuthTextInput
-              placeholder="username"
-              autoCapitalize="none"
-              onChangeText={(username) => setUser({ ...user, username })}
-            />
-            <AuthTextInput
-              placeholder="password"
-              autoCapitalize="none"
-              secureTextEntry={true}
-              onChangeText={(password) => setUser({ ...user, password })}
-            />
-            <AuthButton onPress={handleSubmit}>
-              <AuthText>Sign in</AuthText>
-            </AuthButton>
-            <AuthButton>
-              <AuthText>Sign Up</AuthText>
-            </AuthButton>
-          </View>
-        </View>
+        {/* <View style={{ ...StyleSheet.absoluteFill }}> */}
+        <Image
+          source={{
+            uri: "https://www.teahub.io/photos/full/1-11199_cute-backgrounds-for-iphone-rose-gold-iphone-backgrounds.jpg",
+          }}
+          style={{ flex: 1, height: null, width: null }}
+        />
+        {/* <View style={{ height: height / 3, backgroundColor: "white" }}> */}
+        <AuthText>Sign in</AuthText>
+        <AuthTextInput
+          placeholder="username"
+          autoCapitalize="none"
+          onChangeText={(username) => setUser({ ...user, username })}
+        />
+        <AuthTextInput
+          placeholder="password"
+          autoCapitalize="none"
+          secureTextEntry={true}
+          onChangeText={(password) => setUser({ ...user, password })}
+        />
+        <AuthButton onPress={handleSubmit}>
+          <AuthText>Sign in</AuthText>
+        </AuthButton>
+        <AuthButton
+          name="user"
+          size={24}
+          onPress={() => navigation.replace("Signup")}
+        >
+          <AuthText>Sign Up</AuthText>
+        </AuthButton>
       </View>
+      {/* </View> */}
+      {/* </View> */}
     </AuthContainer>
   );
 };
