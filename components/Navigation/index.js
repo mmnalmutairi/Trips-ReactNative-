@@ -7,13 +7,14 @@ import TripDetail from "../trips/TripDetail";
 import TripList from "../trips/TripList";
 import Signin from "../auth/Signin";
 
-// import Signup from "../authentication/Signup";
+import Signup from "../auth/Signup";
 // import Location from "../Icebox/Location";
 
 // ****************** BUTTONS IMPORT ******************
 import AddTrip from "../buttons/AddTrip";
 import Signout from "../auth/Signout";
 import NewTrip from "../trips/NewTrip";
+import UpdateTrip from "../trips/UpdateTrip";
 
 const Stack = createStackNavigator();
 
@@ -58,6 +59,16 @@ const RootNavigator = () => {
           name="NewTrip"
           component={NewTrip}
           options={{ title: "Add Your Trip" }}
+        />
+        <Stack.Screen
+          name="Signup"
+          component={Signup}
+          options={{ title: "Signup" }}
+        />
+        <Stack.Screen
+          name="UpdateTrip"
+          component={UpdateTrip}
+          options={{ title: "Update Trip" }}
         />
       </Stack.Navigator>
     </>

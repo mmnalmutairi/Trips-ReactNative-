@@ -10,9 +10,8 @@ import {
   TripButtonText,
   TripButton,
 } from "./styles";
-import { Button } from "react-native";
 // import * as ImagePicker from "react-native-image-picker";
-import { launchImageLibrary } from "react-native-image-picker";
+// import { launchImageLibrary } from "react-native-image-picker";
 
 const NewTrip = () => {
   const navigation = useNavigation();
@@ -27,28 +26,28 @@ const NewTrip = () => {
     navigation.replace("TripList");
   };
 
-  const options = {
-    title: "Pick an image",
-    storageOptions: {
-      skipBackup: true,
-      path: "images",
-    },
-  };
+  // const options = {
+  //   title: "Pick an image",
+  //   storageOptions: {
+  //     skipBackup: true,
+  //     path: "images",
+  //   },
+  // };
 
-  const openPicker = () => {
-    launchImageLibrary(options, (response) => {
-      console.log("Response = ", response);
+  // const openPicker = () => {
+  //   launchImageLibrary(options, (response) => {
+  //     console.log("Response = ", response);
 
-      if (response.didCancel) {
-        console.log("User cancelled image picker");
-      } else if (response.error) {
-        console.log("ImagePicker Error: ", response.error);
-      } else {
-        const source = { uri: response.uri };
-        console.log(source);
-      }
-    });
-  };
+  //     if (response.didCancel) {
+  //       console.log("User cancelled image picker");
+  //     } else if (response.error) {
+  //       console.log("ImagePicker Error: ", response.error);
+  //     } else {
+  //       const source = { uri: response.uri };
+  //       console.log(source);
+  //     }
+  //   });
+  // };
 
   return (
     <TripContainer>
@@ -65,9 +64,9 @@ const NewTrip = () => {
       />
       <TripTextInput
         placeholder="Browse an image"
-        onChangeImage={(event) => setTrip({ ...trip, image: event })}
+        onChangeText={(event) => setTrip({ ...trip, image: event })}
       />
-      <Button title="Select Photo" onPress={openPicker} />
+      {/* <Button title="Select Photo" onPress={openPicker} /> */}
       <TripButton onPress={handleSubmit}>
         <TripButtonText>Add The Trip</TripButtonText>
       </TripButton>
