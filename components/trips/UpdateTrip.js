@@ -5,11 +5,14 @@ import { TripTitle, TripTextInput, TripButtonText, TripButton } from "./styles";
 import tripStore from "../../stores/tripStore";
 import { ExploreBackground } from "../../styles";
 import { View } from "react-native";
-const UpdateTrip = ({ navigation }) => {
+const UpdateTrip = ({ navigation, route }) => {
+  const oldTrip = route.params.trip;
+
   const [trip, setTrip] = useState({
-    title: "",
-    description: "",
-    image: "",
+    id: oldTrip.id,
+    title: oldTrip.title,
+    description: oldTrip.description,
+    image: oldTrip.image,
   });
 
   const handleSubmit = async () => {
@@ -47,7 +50,6 @@ const UpdateTrip = ({ navigation }) => {
           placeholder="Browse an image"
           onChangeText={(event) => setTrip({ ...trip, image: event })}
         />
-        {/* <Button title="Select Photo" onPress={openPicker} /> */}
         <TripButton onPress={handleSubmit}>
           <TripButtonText>Update Trip</TripButtonText>
         </TripButton>

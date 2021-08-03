@@ -43,7 +43,7 @@ export const SignoutButton = styled.TouchableOpacity`
 
 export const SignupTextInput = styled.TextInput`
   align-self: stretch;
-  text-align: left;
+  text-align: center;
   height: 40px;
   margin-bottom: 30px;
   color: black;

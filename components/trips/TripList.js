@@ -9,6 +9,7 @@ import tripStore from "../../stores/tripStore";
 import TripItem from "./TripItem";
 import { ScrollView, StatusBar, StyleSheet, Dimensions } from "react-native";
 import { ExploreBackground } from "../../styles";
+import authStore from "../../stores/authStore";
 const { width, height } = Dimensions.get("window");
 
 const TripList = ({ navigation }) => {
@@ -30,7 +31,12 @@ const TripList = ({ navigation }) => {
 
   if (tripStore.isLoading)
     return <TripDetailsStyle> Loading... </TripDetailsStyle>;
-  const tripList = tripStore.trips.map((trip) => (
+
+  const tripListFiltered = tripStore.trips.filter(
+    (trip) => trip.userId !== authStore.user.id
+  );
+
+  const tripList = tripListFiltered.map((trip) => (
     <TripItem trip={trip} key={trip.id} navigation={navigation} />
   ));
 

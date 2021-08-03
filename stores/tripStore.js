@@ -38,11 +38,14 @@ class TripStore {
   };
 
   // ****************** UPDATE TRIP METHOD ******************
-  updateTrip = async (updatedTrip) => {
+  updateTrip = async (Updatedtrip) => {
     try {
       const formData = new FormData();
-      for (const key in updatedTrip) formData.append(key, updatedTrip[key]);
-      const response = await instance.put(`/trips/${updatedTrip.id}`, formData);
+      for (const key in Updatedtrip) formData.append(key, Updatedtrip[key]);
+      const response = await instance.put(
+        `/trips/${Updatedtrip.id}`,
+        Updatedtrip
+      );
       const trip = this.trips.find((trip) => trip.id === response.data.id);
       for (const key in trip) trip[key] = response.data[key];
     } catch (error) {

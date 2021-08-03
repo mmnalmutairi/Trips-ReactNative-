@@ -41,12 +41,12 @@ const Signup = ({ navigation }) => {
         >
           <AuthText>Sign up</AuthText>
           <SignupTextInput
-            placeholder="username"
+            placeholder="Username"
             autoCapitalize="none"
             onChangeText={(username) => setUser({ ...user, username })}
           />
           <SignupTextInput
-            placeholder="password"
+            placeholder="Password"
             autoCapitalize="none"
             secureTextEntry={true}
             onChangeText={(password) => setUser({ ...user, password })}

@@ -23,7 +23,7 @@ const Home = ({ navigation }) => {
         </TextView>
         <SkipStyling>
           {/* ****************** HOW TO DO NAVIGATION ****************** */}
-          <ButtonStyling onPress={() => navigation.navigate("TripList")}>
+          <ButtonStyling onPress={() => navigation.navigate("Signin")}>
             Go to Trips List
           </ButtonStyling>
         </SkipStyling>
