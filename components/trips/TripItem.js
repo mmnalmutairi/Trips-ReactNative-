@@ -1,35 +1,56 @@
 import React from "react";
 
 // ****************** STYLES ******************
-import { Image } from "react-native";
-import { TripItemStyled, TripItemStyle } from "./styles";
+import { View, Dimensions, Image } from "react-native";
+import { TripTextStyled } from "./styles";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import tripStore from "../../stores/tripStore";
 
+const { width, height } = Dimensions.get("window");
+const SPACING = 10;
+const ITEM_SIZE = width * 0.72;
+
 const TripItem = ({ trip, navigation }) => {
   return (
-    <TripItemStyle>
-      <Image source={{ uri: trip.image }} style={{ width: 100, height: 100 }} />
-      <TripItemStyled
-        onPress={() => navigation.navigate("TripDetail", { trip: trip })}
+    <View style={{ width: ITEM_SIZE }}>
+      <View
+        style={{
+          marginHorizontal: SPACING,
+          marginVertical: SPACING,
+          padding: SPACING * 2,
+          alignItems: "center",
+          backgroundColor: "#fcd5ce",
+          paddingBottom: 30,
+          borderRadius: 20,
+        }}
       >
-        {trip.title}
-      </TripItemStyled>
-      <MaterialCommunityIcons
-        name="delete-empty-outline"
-        size={24}
-        color="black"
-        onPress={() => tripStore.deleteTrip(trip.id)}
-      />
-      <MaterialIcons
-        name="update"
-        size={24}
-        color="black"
-        onPress={() => navigation.navigate("UpdateTrip")}
-      />
-    </TripItemStyle>
+        <Image
+          source={{ uri: trip.image }}
+          style={{ width: 230, height: 250, borderRadius: 20 }}
+        />
+        <TripTextStyled
+          onPress={() => navigation.navigate("TripDetail", { trip: trip })}
+        >
+          {trip.title}
+        </TripTextStyled>
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <MaterialCommunityIcons
+            name="delete-empty-outline"
+            size={30}
+            color="black"
+            onPress={() => tripStore.deleteTrip(trip.id)}
+          />
+          <MaterialIcons
+            name="update"
+            size={30}
+            color="black"
+            onPress={() => navigation.navigate("UpdateTrip")}
+          />
+        </View>
+      </View>
+    </View>
   );
 };
 

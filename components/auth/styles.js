@@ -1,29 +1,26 @@
 import styled from "styled-components/native";
 
 export const AuthContainer = styled.View`
-  flex: 1;
-  align-self: stretch;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  padding-right: 60px;
-  padding-left: 60px;
+  padding-top: 180px;
+  padding-left: 20px;
+  padding-right: 20px;
 `;
 
 export const AuthText = styled.Text`
   font-size: 20px;
   font-weight: bold;
   color: white;
+  align-items: center;
 `;
 
 export const AuthTextInput = styled.TextInput`
   align-self: stretch;
-  text-align: left;
-  height: 40px;
+  text-align: center;
+  height: 50px;
   margin-bottom: 30px;
   color: black;
-  border-bottom-color: black;
-  border-bottom-width: 1px;
+  border-bottom-color: #fcd5ce;
+  border-bottom-width: 2px;
 `;
 
 export const AuthButton = styled.TouchableOpacity`
@@ -34,6 +31,8 @@ export const AuthButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   margin-vertical: 5px;
+  padding-right: 70px;
+  padding-left: 70px;
 `;
 
 export const SignoutButton = styled.TouchableOpacity`
@@ -48,6 +47,6 @@ export const SignupTextInput = styled.TextInput`
   height: 40px;
   margin-bottom: 30px;
   color: black;
-  border-bottom-color: black;
-  border-bottom-width: 1px;
+  border-bottom-color: #fcd5ce;
+  border-bottom-width: 2px;
 `;

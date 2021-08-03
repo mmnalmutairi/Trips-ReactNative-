@@ -25,7 +25,7 @@ const RootNavigator = () => {
         initialRouteName="Home"
         screenOptions={{
           headerStyle: { backgroundColor: "#fcd5ce" },
-          headerColor: "White",
+          headerColor: "transparent",
           headerTitleStyle: { fontWeight: "bold" },
         }}
       >
@@ -37,7 +37,10 @@ const RootNavigator = () => {
         <Stack.Screen
           name="TripList"
           component={TripList}
-          options={{ title: "Explore", headerRight: () => <AddTrip /> }}
+          options={{
+            title: "Explore",
+            headerRight: () => <AddTrip />,
+          }}
         />
         <Stack.Screen
           name="TripDetail"
