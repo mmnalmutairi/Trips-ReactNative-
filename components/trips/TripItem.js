@@ -35,20 +35,24 @@ const TripItem = ({ trip, navigation }) => {
         >
           {trip.title}
         </TripTextStyled>
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <MaterialCommunityIcons
-            name="delete-empty-outline"
-            size={30}
-            color="black"
-            onPress={() => tripStore.deleteTrip(trip.id)}
-          />
-          <MaterialIcons
-            name="update"
-            size={30}
-            color="black"
-            onPress={() => navigation.navigate("UpdateTrip", { trip: trip })}
-          />
-        </View>
+        {authStore.user.id === tripStore.trips.userId && (
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <MaterialCommunityIcons
+              name="delete-empty-outline"
+              size={30}
+              color="black"
+              onPress={() => tripStore.deleteTrip(trip.id)}
+            />
+            <MaterialIcons
+              name="update"
+              size={30}
+              color="black"
+              onPress={() => navigation.navigate("UpdateTrip", { trip: trip })}
+            />
+          </View>
+        )}
       </View>
     </View>
   );
