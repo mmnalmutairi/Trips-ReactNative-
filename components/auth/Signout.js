@@ -9,7 +9,7 @@ const Signout = () => {
 
   const handlePress = async () => {
     await authStore.signout();
-    navigation.goBack("Home");
+    navigation.navigate("Home");
   };
   return (
     <SignoutButton onPress={handlePress}>

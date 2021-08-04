@@ -1,110 +1,87 @@
 import React, { useState } from "react";
 import profileStore from "../../../stores/profileStore";
 import { observer } from "mobx-react";
-import * as DocumentPicker from "expo-document-picker";
+
 // ******************* Styles *******************
-import { ExploreBackground, UpdateImage } from "../../../styles";
+import { ExploreBackground } from "../../../styles";
 import {
-  ProfileTitle,
-  ProfileTextInput,
-  ProfileButton,
-  ProfileButtonText,
-} from "../styles";
-import { View, TouchableOpacity } from "react-native";
+  TripTitle,
+  TripTextInput,
+  TripButtonText,
+  TripButton,
+} from "../../trips/styles";
+
+import { View } from "react-native";
 
 const SPACING = 10;
 // ************* PASS (USER , PROFILE , CHECKID) FROM EDITPROFILEBUTTON ***************
-const ProfileEdit = ({ route, navigation }) => {
-  const { user } = route.params;
-  const { checkId } = route.params;
+const ProfileEdit = ({ navigation }) => {
+  // const { oldProfile } = route.params;
   const [profile, setProfile] = useState({
-    bio: user.bio,
-    image: { uri: user.image ? user.image : "" },
+    id: "",
+    name: "",
+    bio: "",
+    image: "",
   });
 
-  const [doc, setDoc] = useState();
-  const pickDocument = async () => {
-    try {
-      let result = await DocumentPicker.getDocumentAsync({
-        type: "*/*",
-        copyToCacheDirectory: true,
-      }).then((response) => {
-        if (response.type == "success") {
-          let { name, size, uri } = response;
-          let nameParts = name.split(".");
-          let fileType = nameParts[nameParts.length - 1];
-          var fileToUpload = {
-            name: name,
-            size: size,
-            uri: uri,
-            type: "application/" + fileType,
-          };
-          setDoc(fileToUpload);
-          setProfile({ ...profile, image: fileToUpload });
-        }
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+  // console.log(oldProfile);
   const handleSubmit = async () => {
-    await profileStore.updateProfile(profile, checkId);
+    await profileStore.updateProfile(profile);
     // navigation.navigate("ProfileDetail", { userId: oldProfile.userId });
     navigation.goBack();
   };
 
   return (
-    <>
-      <ExploreBackground
-        source={{
-          uri: "https://www.teahub.io/photos/full/1-11199_cute-backgrounds-for-iphone-rose-gold-iphone-backgrounds.jpg",
+    <ExploreBackground
+      source={{
+        uri: "https://www.teahub.io/photos/full/1-11199_cute-backgrounds-for-iphone-rose-gold-iphone-backgrounds.jpg",
+      }}
+    >
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          paddingTop: 100,
+          paddingLeft: 10,
+          paddingRight: 10,
         }}
       >
         <View
           style={{
-            justifyContent: "center",
+            marginHorizontal: SPACING,
+            marginVertical: SPACING,
+            padding: SPACING * 2,
             alignItems: "center",
-            paddingTop: 20,
-            paddingLeft: 10,
-            paddingRight: 10,
+            justifyContent: "center",
+            backgroundColor: "#fae1dd",
+            borderRadius: 20,
+            paddingLeft: 60,
+            paddingRight: 60,
+            paddingTop: 80,
+            paddingBottom: 100,
           }}
         >
-          <View
-            style={{
-              marginHorizontal: SPACING,
-              marginVertical: SPACING,
-              padding: SPACING * 2,
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "white",
-              borderRadius: 20,
-              paddingLeft: 60,
-              paddingRight: 60,
-              paddingBottom: 300,
-            }}
-          >
-            <ProfileTitle>Update Your Profile</ProfileTitle>
-            <TouchableOpacity onPress={pickDocument}>
-              <UpdateImage source={{ uri: profile.image.uri }} />
-            </TouchableOpacity>
-
-            <ProfileTitle> Click on the image to Update </ProfileTitle>
-            <ProfileTextInput
-              placeholder="Type in your Bio ... "
-              placeholderTextColor="#949499"
-              autoCapitalize="none"
-              onChangeText={(bio) => setProfile({ ...profile, bio })}
-              value={profile.bio}
-            />
-
-            <ProfileButton onPress={handleSubmit}>
-              <ProfileButtonText>Update My Profile</ProfileButtonText>
-            </ProfileButton>
-          </View>
+          <TripTitle>Profile Edit</TripTitle>
+          <TripTextInput
+            placeholder="Enter Your name"
+            autoCapitalize="none"
+            onChangeText={(event) => setProfile({ ...profile, name: event })}
+          />
+          <TripTextInput
+            placeholder="Write about yourself"
+            autoCapitalize="none"
+            onChangeText={(event) => setProfile({ ...profile, bio: event })}
+          />
+          <TripTextInput
+            placeholder="Image Picker feature (UNDER CONSTRUCTION), for now paste the link"
+            onChangeText={(event) => setProfile({ ...profile, image: event })}
+          />
+          <TripButton onPress={handleSubmit}>
+            <TripButtonText>Update</TripButtonText>
+          </TripButton>
         </View>
-      </ExploreBackground>
-    </>
+      </View>
+    </ExploreBackground>
   );
 };
 

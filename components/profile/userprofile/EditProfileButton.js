@@ -11,11 +11,7 @@ const EditProfileButton = ({ user, profile }) => {
       name="edit"
       size={24}
       onPress={() =>
-        navigation.navigate("ProfileEdit", {
-          user: user,
-          profile: profile,
-          checkId: authStore.user?.id,
-        })
+        navigation.navigate("ProfileEdit", { oldProfile: profile })
       }
     />
   );

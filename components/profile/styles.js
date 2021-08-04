@@ -50,10 +50,10 @@ export const ProfileDescriptionStyle = styled.Text`
 `;
 
 export const ProfileImage = styled.Image`
-  width: 40px;
-  height: 40px;
-  border-radius: 100px;
-  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  right: 30px;
   bottom: 5px;
 `;
 

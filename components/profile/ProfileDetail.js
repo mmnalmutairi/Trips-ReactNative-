@@ -3,21 +3,19 @@ import { observer } from "mobx-react";
 import authStore from "../../stores/authStore";
 import tripStore from "../../stores/tripStore";
 import { ExploreBackground } from "../../styles";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Image } from "react-native";
+import ProfileTripList from "./ProfileTripList";
 import { Feather } from "@expo/vector-icons";
-import { ProfileImage } from "../profile/styles";
 const SPACING = 10;
 
 const ProfileDetail = () => {
   const trips = tripStore.trips
     .filter((trip) => trip.userId === authStore.user?.id)
     .map((trip) => trip);
-  const triparray = Object.assign({}, ...trips);
 
   const handlePress = () => {
     if (authStore.user)
       navigation.navigate("ProfileItem", {
-        triparray: triparray,
         checkId: authStore.user?.id,
       });
     else {
@@ -39,12 +37,20 @@ const ProfileDetail = () => {
       }}
     >
       <TouchableOpacity onPress={handlePress}>
-        <ProfileImage
+        <Image
           source={{
             uri: "https://thebakersnest.in/wp-content/uploads/2019/10/img_234957.png",
           }}
+          style={{
+            width: 50,
+            height: 50,
+            borderRadius: 20,
+            marginLeft: 200,
+            marginTop: 100,
+          }}
         />
       </TouchableOpacity>
+      <ProfileTripList />
     </ExploreBackground>
   );
 };

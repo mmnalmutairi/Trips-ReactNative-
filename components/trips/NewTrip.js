@@ -10,8 +10,6 @@ import {
   TripButtonText,
   TripButton,
 } from "./styles";
-// import * as ImagePicker from "react-native-image-picker";
-// import { launchImageLibrary } from "react-native-image-picker";
 
 const NewTrip = () => {
   const navigation = useNavigation();
@@ -25,29 +23,6 @@ const NewTrip = () => {
     await tripStore.createTrip(trip);
     navigation.replace("TripList");
   };
-
-  // const options = {
-  //   title: "Pick an image",
-  //   storageOptions: {
-  //     skipBackup: true,
-  //     path: "images",
-  //   },
-  // };
-
-  // const openPicker = () => {
-  //   launchImageLibrary(options, (response) => {
-  //     console.log("Response = ", response);
-
-  //     if (response.didCancel) {
-  //       console.log("User cancelled image picker");
-  //     } else if (response.error) {
-  //       console.log("ImagePicker Error: ", response.error);
-  //     } else {
-  //       const source = { uri: response.uri };
-  //       console.log(source);
-  //     }
-  //   });
-  // };
 
   return (
     <TripContainer>
@@ -66,7 +41,6 @@ const NewTrip = () => {
         placeholder="Browse an image"
         onChangeText={(event) => setTrip({ ...trip, image: event })}
       />
-      {/* <Button title="Select Photo" onPress={openPicker} /> */}
       <TripButton onPress={handleSubmit}>
         <TripButtonText>Add The Trip</TripButtonText>
       </TripButton>

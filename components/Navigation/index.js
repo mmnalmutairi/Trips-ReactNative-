@@ -12,7 +12,7 @@ import UpdateTrip from "../trips/UpdateTrip";
 import Signin from "../auth/Signin";
 import Signup from "../auth/Signup";
 import Signout from "../auth/Signout";
-
+import EditProfileButton from "../profile/userprofile/EditProfileButton";
 // ****************** PROFILE IMPORT  ******************
 import ProfileDetail from "../profile/ProfileDetail";
 import ProfileEdit from "../profile/userprofile/ProfileEdit";
@@ -83,7 +83,10 @@ const RootNavigator = () => {
         <Stack.Screen
           name="ProfileDetail"
           component={ProfileDetail}
-          options={{ title: "Profile" }}
+          options={{
+            title: "Profile",
+            headerRight: () => <EditProfileButton />,
+          }}
         />
         <Stack.Screen
           name="ProfileList"
