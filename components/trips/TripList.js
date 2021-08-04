@@ -13,8 +13,6 @@ import authStore from "../../stores/authStore";
 const { width, height } = Dimensions.get("window");
 
 const TripList = ({ navigation }) => {
-  //   const scrollX = React.useRef(new Animated.Value(0)).current;
-
   const styles = StyleSheet.create({
     container: {
       flex: 1,

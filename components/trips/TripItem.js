@@ -8,6 +8,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import tripStore from "../../stores/tripStore";
 import authStore from "../../stores/authStore";
+
 const { width, height } = Dimensions.get("window");
 const SPACING = 10;
 const ITEM_SIZE = width * 0.72;

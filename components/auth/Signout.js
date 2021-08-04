@@ -1,15 +1,15 @@
 import React from "react";
-import { observer } from "mobx-react";
+import { useNavigation } from "@react-navigation/core";
 import { AntDesign } from "@expo/vector-icons";
 import authStore from "../../stores/authStore";
 import { SignoutButton } from "./styles";
-import { useNavigation } from "@react-navigation/native";
 
 const Signout = () => {
   const navigation = useNavigation();
+
   const handlePress = async () => {
     await authStore.signout();
-    navigation.navigate("Home");
+    navigation.goBack("Home");
   };
   return (
     <SignoutButton onPress={handlePress}>
@@ -18,4 +18,4 @@ const Signout = () => {
   );
 };
 
-export default observer(Signout);
+export default Signout;

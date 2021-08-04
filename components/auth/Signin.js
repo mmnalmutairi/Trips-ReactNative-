@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react";
-import { useState } from "react";
-import { AuthButton, AuthContainer, AuthText, AuthTextInput } from "./styles";
 import authStore from "../../stores/authStore";
-import { Image, View, Dimensions, StyleSheet } from "react-native";
-import { ExploreBackground } from "../../styles";
-const { width, height } = Dimensions.get("screen");
 
+import { AuthButton, AuthText, AuthTextInput } from "./styles";
+import { View, Dimensions } from "react-native";
+import { ExploreBackground } from "../../styles";
+
+const { width, height } = Dimensions.get("screen");
 const SPACING = 10;
 
 const Signin = ({ navigation }) => {
@@ -64,14 +64,14 @@ const Signin = ({ navigation }) => {
             onChangeText={(password) => setUser({ ...user, password })}
           />
           <AuthButton onPress={handleSubmit}>
-            <AuthText>Sign in</AuthText>
+            <AuthText> Sign in </AuthText>
           </AuthButton>
           <AuthButton
             name="user"
             size={24}
-            onPress={() => navigation.replace("Signup")}
+            onPress={() => navigation.navigate("Signup")}
           >
-            <AuthText>Sign Up</AuthText>
+            <AuthText> Sign Up </AuthText>
           </AuthButton>
         </View>
       </View>

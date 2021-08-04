@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react";
-import { useState } from "react";
-import { AuthButton, AuthText, SignupTextInput } from "./styles";
 import authStore from "../../stores/authStore";
+
+import { AuthButton, AuthText, SignupTextInput } from "./styles";
 import { View } from "react-native";
 import { ExploreBackground } from "../../styles";
+
 const SPACING = 10;
+
 const Signup = ({ navigation }) => {
   const [user, setUser] = useState({ username: "", password: "" });
 
   const handleSubmit = async () => {
-    await authStore.signup(user);
-    if (authStore.user) navigation.replace("Home");
+    await authStore.signup(user, navigation);
+    navigation.navigate("Signin");
   };
 
   return (

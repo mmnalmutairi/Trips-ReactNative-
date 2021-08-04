@@ -1,20 +1,24 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-// ****************** COMPONENTS IMPORT ******************
+// ****************** TRIPS IMPORT ******************
 import Home from "../Home";
 import TripDetail from "../trips/TripDetail";
 import TripList from "../trips/TripList";
-import Signin from "../auth/Signin";
-
-import Signup from "../auth/Signup";
-// import Location from "../Icebox/Location";
-
-// ****************** BUTTONS IMPORT ******************
-import AddTrip from "../buttons/AddTrip";
-import Signout from "../auth/Signout";
 import NewTrip from "../trips/NewTrip";
 import UpdateTrip from "../trips/UpdateTrip";
+
+// ****************** AUTH IMPORT ******************
+import Signin from "../auth/Signin";
+import Signup from "../auth/Signup";
+import Signout from "../auth/Signout";
+
+// ****************** PROFILE IMPORT  ******************
+import ProfileDetail from "../profile/ProfileDetail";
+import ProfileEdit from "../profile/userprofile/ProfileEdit";
+
+// ****************** EXTRA  ******************
+import ViewProfileButton from "../buttons/ViewProfileButton";
 
 const Stack = createStackNavigator();
 
@@ -39,7 +43,7 @@ const RootNavigator = () => {
           component={TripList}
           options={{
             title: "Explore",
-            headerRight: () => <AddTrip />,
+            headerRight: () => <ViewProfileButton />,
           }}
         />
         <Stack.Screen
@@ -59,19 +63,33 @@ const RootNavigator = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
+          name="Signup"
+          component={Signup}
+          options={{ title: "Signup" }}
+        />
+
+        <Stack.Screen
           name="NewTrip"
           component={NewTrip}
           options={{ title: "Add Your Trip" }}
         />
         <Stack.Screen
-          name="Signup"
-          component={Signup}
-          options={{ title: "Signup" }}
-        />
-        <Stack.Screen
           name="UpdateTrip"
           component={UpdateTrip}
           options={{ title: "Update Trip" }}
+        />
+
+        {/* ******************* PROFILE VIEW ******************* */}
+        <Stack.Screen
+          name="ProfileDetail"
+          component={ProfileDetail}
+          options={{ title: "Profile" }}
+        />
+
+        <Stack.Screen
+          name="ProfileEdit"
+          component={ProfileEdit}
+          options={{ title: "Update Profile" }}
         />
       </Stack.Navigator>
     </>

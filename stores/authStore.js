@@ -11,44 +11,34 @@ class AuthStore {
     makeAutoObservable(this);
   }
 
-  signup = async (newUser) => {
+  signup = async (newUser, navigation) => {
     try {
       const res = await instance.post("/signup", newUser);
       this.setUser(res.data.token);
+      navigation.replace("TripList");
     } catch (error) {
       console.error(error);
     }
   };
 
-  signup = async (newUser) => {
+  signin = async (userData, navigation) => {
     try {
-      const res = await instance.post("/signup", newUser);
-      await this.setUser(res.data.token);
-      console.log(res.data.token);
+      const res = await instance.post("/signin", userData);
+      await this.setUser(res.data.token, navigation);
     } catch (error) {
       console.log(error);
     }
   };
-
-  signin = async (userData) => {
-    try {
-      const res = await instance.post("/signin", userData);
-      await this.setUser(res.data.token);
-    } catch (error) {
-      console.log(error);
-    }
+  signout = async () => {
+    delete instance.defaults.headers.common.Authorization;
+    await AsyncStorage.removeItem("myToken");
+    this.user = null;
   };
 
   setUser = async (token) => {
     await AsyncStorage.setItem("myToken", token);
     instance.defaults.headers.common.Authorization = `Bearer ${token}`;
     this.user = decode(token);
-  };
-
-  signout = async () => {
-    delete instance.defaults.headers.common.Authorization;
-    await AsyncStorage.removeItem("myToken");
-    this.user = null;
   };
 
   checkForToken = async () => {
