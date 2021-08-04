@@ -16,7 +16,7 @@ import Signout from "../auth/Signout";
 // ****************** PROFILE IMPORT  ******************
 import ProfileDetail from "../profile/ProfileDetail";
 import ProfileEdit from "../profile/userprofile/ProfileEdit";
-
+import ProfileList from "../profile/ProfileList";
 // ****************** EXTRA  ******************
 import ViewProfileButton from "../buttons/ViewProfileButton";
 
@@ -84,6 +84,11 @@ const RootNavigator = () => {
           name="ProfileDetail"
           component={ProfileDetail}
           options={{ title: "Profile" }}
+        />
+        <Stack.Screen
+          name="ProfileList"
+          component={ProfileList}
+          options={{ title: "Profile's" }}
         />
 
         <Stack.Screen

@@ -1,15 +1,12 @@
 import React from "react";
 import { observer } from "mobx-react";
-//components
 import EditProfileButton from "./userprofile/EditProfileButton";
-//stores
 import profileStore from "../../stores/profileStore";
 import authStore from "../../stores/authStore";
-//styles
 import { BioText } from "./styles";
 import { View } from "react";
 import { ExploreBackground } from "../../styles";
-import { TripDetailsStyle, TripDetailsStyle } from "../trips/styles";
+import { TripDetailsStyle } from "../trips/styles";
 import { ProfileImage } from "../profile/styles";
 
 const SPACING = 10;

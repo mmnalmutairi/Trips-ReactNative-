@@ -3,13 +3,13 @@ import { useNavigation } from "@react-navigation/native";
 //stores
 import authStore from "../../../stores/authStore";
 //styles
-import { EditBtn } from "../../styles";
+import { AntDesign } from "@expo/vector-icons";
 const EditProfileButton = ({ user, profile }) => {
   const navigation = useNavigation();
   return (
-    <EditBtn
+    <AntDesign
       name="edit"
-      size={23}
+      size={24}
       onPress={() =>
         navigation.navigate("ProfileEdit", {
           user: user,

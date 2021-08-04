@@ -1,7 +1,7 @@
 import React from "react";
 
 // ****************** STYLES ******************
-import { View, Dimensions, Image, Button, Text } from "react-native";
+import { View, Dimensions, Image } from "react-native";
 import { TripTextStyled } from "./styles";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -36,7 +36,7 @@ const TripItem = ({ trip, navigation }) => {
         >
           {trip.title}
         </TripTextStyled>
-        {authStore.user.id === tripStore.trips.userId && (
+        {authStore.user.id !== trip.userId && (
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
