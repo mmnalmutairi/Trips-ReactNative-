@@ -8,7 +8,8 @@ import tripStore from "../../stores/tripStore";
 import { ListWrapper } from "../trips/styles";
 import { ExploreBackground } from "../../styles";
 import { ScrollView, StatusBar, StyleSheet } from "react-native";
-const ProfileList = ({ route, navigation }) => {
+
+const ProfileList = ({ navigation, route }) => {
   const { checkId } = route.params;
   if (authStore.loading)
     return <TripDetailsStyle> Loading... </TripDetailsStyle>;
@@ -27,26 +28,26 @@ const ProfileList = ({ route, navigation }) => {
     },
   });
   // **************************** FIND PROFILE OF THE USER BY USER ID ********************************
-  const userList = checkId
-    ? profileStore.profiles
-        .filter((user) => user.userId === checkId)
-        .map((user) => user)
-        .map((user) => (
-          <ProfileItem user={user} key={user.id} profile={profile.userId} />
-        ))
-    : profileStore.profiles
-        .filter((user) => user.userId === profile.id)
-        .map((user) => user)
-        .map((user) => (
-          <ProfileItem user={user} key={user.id} profile={profile.userId} />
-        ));
+  // const userList = checkId
+  //   ? profileStore.profiles
+  //       .filter((user) => user.userId === checkId)
+  //       .map((user) => user)
+  //       .map((user) => (
+  //         <ProfileItem user={user} key={user.id} profile={profile.userId} />
+  //       ))
+  //   : profileStore.profiles
+  //       .filter((user) => user.userId === profile.id)
+  //       .map((user) => user)
+  //       .map((user) => (
+  //         <ProfileItem user={user} key={user.id} profileId={profile.userId} />
+  //       ));
 
   // **************************** FIND TRIPS RELATED TO USER ITSELF ********************************
-  const findTrips = tripStore.trips
-    .filter((trip) => trip.userId === profile.userId)
-    .map((trip) => (
-      <ProfileTripList item={trip} key={trip.id} navigation={navigation} />
-    ));
+  // const findTrips = tripStore.trips
+  //   .filter((trip) => trip.userId === profile.userId)
+  //   .map((trip) => (
+  //     <ProfileTripList item={trip} key={trip.id} navigation={navigation} />
+  //   ));
   return (
     <ExploreBackground
       source={{

@@ -30,11 +30,11 @@ const TripList = ({ navigation }) => {
   if (tripStore.isLoading)
     return <TripDetailsStyle> Loading... </TripDetailsStyle>;
 
-  // const tripListFiltered = tripStore.trips.filter(
-  //   (trip) => trip.userId !== authStore.user.id
-  // );
+  const tripListFiltered = tripStore.trips.filter(
+    (trip) => trip.userId !== authStore.user.id
+  );
 
-  const tripList = tripStore.trips.map((trip) => (
+  const tripList = tripListFiltered.map((trip) => (
     <TripItem trip={trip} key={trip.id} navigation={navigation} />
   ));
 

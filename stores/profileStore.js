@@ -21,12 +21,15 @@ class ProfileStore {
   };
 
   // ****************** UPDATE PROFILE METHOD ******************
-  updateProfile = async (Updatedprofile, profileId) => {
+  updateProfile = async (Updatedprofile) => {
     try {
       const formData = new FormData();
       for (const key in Updatedprofile)
         formData.append(key, Updatedprofile[key]);
-      const response = await instance.put(`/profiles/${profileId}`, formData);
+      const response = await instance.put(
+        `/profiles/${Updatedprofile.id}`,
+        formData
+      );
       // console.log(response);
       const profile = this.profiles.find((profile) => profile.id === profileId);
       for (const key in profile) profile[key] = response.data[key];
@@ -36,8 +39,8 @@ class ProfileStore {
     }
   };
 
-  // getProfileById = (userId) =>
-  //   this.profiles.find((profile) => profile.userId === +userId);
+  getProfileById = (userId) =>
+    this.profiles.find((profile) => profile.userId === +userId);
 }
 
 const profileStore = new ProfileStore();
