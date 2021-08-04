@@ -1,5 +1,4 @@
 import React from "react";
-import { View, ScrollView } from "react-native";
 import { observer } from "mobx-react";
 import ProfileItem from "./ProfileItem";
 import ProfileTripList from "./ProfileTripList";
@@ -8,13 +7,25 @@ import authStore from "../../stores/authStore";
 import tripStore from "../../stores/tripStore";
 import { ListWrapper } from "../trips/styles";
 import { ExploreBackground } from "../../styles";
-
+import { ScrollView, StatusBar, StyleSheet } from "react-native";
 const ProfileList = ({ route, navigation }) => {
   const { checkId } = route.params;
   if (authStore.loading)
     return <TripDetailsStyle> Loading... </TripDetailsStyle>;
   const { profile } = route.params;
-
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingTop: StatusBar.currentHeight,
+    },
+    scrollView: {
+      backgroundColor: "transparent",
+      marginHorizontal: 20,
+    },
+    text: {
+      fontSize: 42,
+    },
+  });
   // **************************** FIND PROFILE OF THE USER BY USER ID ********************************
   const userList = checkId
     ? profileStore.profiles
@@ -42,8 +53,10 @@ const ProfileList = ({ route, navigation }) => {
         uri: "https://www.teahub.io/photos/full/1-11199_cute-backgrounds-for-iphone-rose-gold-iphone-backgrounds.jpg",
       }}
     >
-      <View>{userList}</View>
-      <ScrollView>
+      <ScrollView style={styles.scrollView}>
+        <ListWrapper>{userList}</ListWrapper>
+      </ScrollView>
+      <ScrollView style={styles.scrollView}>
         <ListWrapper>{findTrips}</ListWrapper>
       </ScrollView>
     </ExploreBackground>

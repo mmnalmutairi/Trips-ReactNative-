@@ -32,7 +32,7 @@ class AuthStore {
   signout = async () => {
     delete instance.defaults.headers.common.Authorization;
     await AsyncStorage.removeItem("myToken");
-    this.user = null;
+    // this.user = null;
   };
 
   setUser = async (token) => {
