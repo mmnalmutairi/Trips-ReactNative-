@@ -23,18 +23,14 @@ class TripStore {
   // ****************** CREATE TRIP METHOD ******************
   createTrip = async (newTrip) => {
     try {
-      const res = await instance.post("/trips", newTrip);
+      const formData = new FormData();
+      for (const key in newTrip) formData.append(key, newTrip[key]);
+      const res = await instance.post("/trips", formData);
+      res.data.trips = [];
       this.trips.push(res.data);
     } catch (error) {
       console.error(error);
     }
-  };
-
-  // ****************** DELETE TRIP METHOD ******************
-  deleteTrip = async (tripId) => {
-    await instance.delete(`/trips/${tripId}`);
-    const updatedTrip = this.trips.filter((trip) => trip.id !== +tripId);
-    this.trips = updatedTrip;
   };
 
   // ****************** UPDATE TRIP METHOD ******************
@@ -52,6 +48,15 @@ class TripStore {
       console.log(error);
     }
   };
+
+  // ****************** DELETE TRIP METHOD ******************
+  deleteTrip = async (tripId) => {
+    await instance.delete(`/trips/${tripId}`);
+    const updatedTrip = this.trips.filter((trip) => trip.id !== +tripId);
+    this.trips = updatedTrip;
+  };
+
+  getTripById = (tripId) => this.trips.find((trip) => trip.id === tripId);
 }
 
 const tripStore = new TripStore();

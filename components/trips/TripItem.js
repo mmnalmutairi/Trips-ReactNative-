@@ -8,6 +8,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import tripStore from "../../stores/tripStore";
 import authStore from "../../stores/authStore";
+
 const { width, height } = Dimensions.get("window");
 const SPACING = 10;
 const ITEM_SIZE = width * 0.72;
@@ -35,20 +36,24 @@ const TripItem = ({ trip, navigation }) => {
         >
           {trip.title}
         </TripTextStyled>
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <MaterialCommunityIcons
-            name="delete-empty-outline"
-            size={30}
-            color="black"
-            onPress={() => tripStore.deleteTrip(trip.id)}
-          />
-          <MaterialIcons
-            name="update"
-            size={30}
-            color="black"
-            onPress={() => navigation.navigate("UpdateTrip", { trip: trip })}
-          />
-        </View>
+        {authStore.user.id === tripStore.trips.userId && (
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <MaterialCommunityIcons
+              name="delete-empty-outline"
+              size={30}
+              color="black"
+              onPress={() => tripStore.deleteTrip(trip.id)}
+            />
+            <MaterialIcons
+              name="update"
+              size={30}
+              color="black"
+              onPress={() => navigation.navigate("UpdateTrip", { trip: trip })}
+            />
+          </View>
+        )}
       </View>
     </View>
   );

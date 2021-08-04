@@ -38,3 +38,10 @@ export const ButtonStyling = styled.Text`
   align-items: center;
   justify-content: center;
 `;
+
+export const UpdateImage = styled.Image`
+  margin-top: -100px;
+  width: 250px;
+  height: 250px;
+  border-radius: 300px;
+`;
