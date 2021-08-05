@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
 import authStore from "../../stores/authStore";
-
-import { AuthButton, AuthText, AuthTextInput } from "./styles";
-import { ExploreBackground } from "../../styles";
 import {
   View,
-  Dimensions,
   StyleSheet,
   StatusBar,
   Text,
@@ -15,8 +11,6 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-// const { width, height } = Dimensions.get("screen");
-// const SPACING = 10;
 
 const Signin = ({ navigation }) => {
   const [user, setUser] = useState({
