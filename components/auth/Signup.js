@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
 import authStore from "../../stores/authStore";
-
 import {
   View,
   StyleSheet,
@@ -10,7 +9,6 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-
 import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 

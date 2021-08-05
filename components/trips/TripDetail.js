@@ -1,10 +1,10 @@
 import React from "react";
-import { View, Image } from "react-native";
+import { View, Image, StyleSheet, StatusBar, Text } from "react-native";
 import { TripDetailsStyle, TripDescriptionStyle } from "./styles";
-
 import tripStore from "../../stores/tripStore";
 import { observer } from "mobx-react";
-import { ExploreBackground } from "../../styles";
+import * as Animatable from "react-native-animatable";
+
 const SPACING = 10;
 const TripDetail = ({ route }) => {
   const { trip } = route.params;
@@ -12,42 +12,50 @@ const TripDetail = ({ route }) => {
     return <TripDetailsStyle>Loading... </TripDetailsStyle>;
 
   return (
-    <ExploreBackground
-      source={{
-        uri: "https://www.teahub.io/photos/full/1-11199_cute-backgrounds-for-iphone-rose-gold-iphone-backgrounds.jpg",
-      }}
-    >
-      <View
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          paddingTop: 160,
-        }}
-      >
-        <View
-          style={{
-            marginHorizontal: SPACING,
-            marginVertical: SPACING,
-            padding: SPACING * 2,
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#fcd5ce",
-            borderRadius: 20,
-            paddingTop: 50,
-            paddingBottom: 50,
-          }}
-        >
+    <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
+      <View style={styles.header}>
+        <Text style={styles.text_header}>
           <TripDetailsStyle>{trip.title}</TripDetailsStyle>
-          <Image
-            source={{ uri: trip.image }}
-            style={{ width: 300, height: 250, borderRadius: 20 }}
-          />
-
-          <TripDescriptionStyle>{trip.description}</TripDescriptionStyle>
-        </View>
+        </Text>
       </View>
-    </ExploreBackground>
+
+      <Animatable.View animation="fadeInUpBig" style={styles.footer}>
+        <Image
+          source={{ uri: trip.image }}
+          style={{
+            width: 380,
+            height: 260,
+            borderRadius: 20,
+            paddingLeft: 150,
+          }}
+        />
+
+        <TripDescriptionStyle>{trip.description}</TripDescriptionStyle>
+      </Animatable.View>
+    </View>
   );
 };
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f5cac3",
+  },
+  header: {
+    flex: 1,
+    justifyContent: "flex-end",
+    paddingHorizontal: 20,
+    paddingBottom: 50,
+  },
+  footer: {
+    flex: 3,
+    backgroundColor: "white",
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingVertical: 30,
+    paddingHorizontal: 20,
+  },
+});
 
 export default observer(TripDetail);

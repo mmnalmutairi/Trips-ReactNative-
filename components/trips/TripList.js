@@ -7,10 +7,15 @@ import tripStore from "../../stores/tripStore";
 
 // ****************** COMPONENTS******************
 import TripItem from "./TripItem";
-import { ScrollView, StatusBar, StyleSheet, Dimensions } from "react-native";
-import { ExploreBackground } from "../../styles";
+import {
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Dimensions,
+  View,
+} from "react-native";
 import authStore from "../../stores/authStore";
-const { width, height } = Dimensions.get("window");
+import * as Animatable from "react-native-animatable";
 
 const TripList = ({ navigation }) => {
   const styles = StyleSheet.create({
@@ -39,15 +44,14 @@ const TripList = ({ navigation }) => {
   ));
 
   return (
-    <ExploreBackground
-      source={{
-        uri: "https://www.teahub.io/photos/full/1-11199_cute-backgrounds-for-iphone-rose-gold-iphone-backgrounds.jpg",
-      }}
+    <Animatable.View
+      animation="fadeInUpBig"
+      style={{ backgroundColor: "#fcd5ce" }}
     >
       <ScrollView style={styles.scrollView}>
         <ListWrapper>{tripList}</ListWrapper>
       </ScrollView>
-    </ExploreBackground>
+    </Animatable.View>
   );
 };
 

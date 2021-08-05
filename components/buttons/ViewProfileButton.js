@@ -1,13 +1,19 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import authStore from "../../stores/authStore";
 
-const ViewProfile = ({ userId }) => {
+const ViewProfile = () => {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    // console.log(" I'm in here");
-    navigation.navigate("ProfileDetail", { userId });
+    if (authStore.user.username === "Maha") {
+      navigation.navigate("MahaProfile");
+    } else if (authStore.user.username === "Taiba") {
+      navigation.navigate("TaibaProfile");
+    } else if (authStore.user.username === "Alaa") {
+      navigation.navigate("AlaaProfile");
+    }
   };
 
   return (

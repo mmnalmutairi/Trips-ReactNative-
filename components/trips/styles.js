@@ -8,12 +8,12 @@ export const ListWrapper = styled.View`
 `;
 
 export const TripDetailsStyle = styled.Text`
-  font-size: 35px;
+  font-size: 40px;
   font-weight: bold;
-  color: #1d3557;
+  color: white;
   align-items: center;
   justify-content: center;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
 `;
 
 export const TripDescriptionStyle = styled.Text`
@@ -21,11 +21,11 @@ export const TripDescriptionStyle = styled.Text`
   font-weight: bold;
   align-items: center;
   justify-content: center;
-  padding-top: 20px;
+  padding-top: 30px;
 `;
 
 export const TripTextStyled = styled.Text`
-  color: #1d3557;
+  color: #fcd5ce;
   font-size: 25px;
   font-weight: bold;
   align-items: center;

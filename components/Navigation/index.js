@@ -19,7 +19,9 @@ import ProfileEdit from "../profile/userprofile/ProfileEdit";
 import ProfileList from "../profile/ProfileList";
 // ****************** EXTRA  ******************
 import ViewProfileButton from "../buttons/ViewProfileButton";
-
+import AlaaProfile from "../profile/profiles/AlaaProfile";
+import MahaProfile from "../profile/profiles/MahaProfile";
+import TaibaProfile from "../profile/profiles/TaibaProfile";
 const Stack = createStackNavigator();
 
 const RootNavigator = () => {
@@ -98,6 +100,21 @@ const RootNavigator = () => {
           name="ProfileEdit"
           component={ProfileEdit}
           options={{ title: "Update Profile" }}
+        />
+        <Stack.Screen
+          name="AlaaProfile"
+          component={AlaaProfile}
+          options={{ title: " Profile", headerRight: () => <Signout /> }}
+        />
+        <Stack.Screen
+          name="MahaProfile"
+          component={MahaProfile}
+          options={{ title: " Profile", headerRight: () => <Signout /> }}
+        />
+        <Stack.Screen
+          name="TaibaProfile"
+          component={TaibaProfile}
+          options={{ title: " Profile", headerRight: () => <Signout /> }}
         />
       </Stack.Navigator>
     </>
